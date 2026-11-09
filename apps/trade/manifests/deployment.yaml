@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: trade  # Use appName from values.yaml
-        image: "vamsipothireddy/trade:sha-0f4985c"
+        image: "vamsipothireddy/trade:606ed0efc2eee0239a89ca4b2df79a1d7cc41053"
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8000
