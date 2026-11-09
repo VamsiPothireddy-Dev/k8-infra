@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: trade-service-deployment  # Generalized name based on appName from values.yaml
+  name: trade-deployment  # Generalized name based on appName from values.yaml
   labels:
     helm.sh/chart: services-0.1.0
     app.kubernetes.io/name: services
@@ -14,16 +14,16 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: trade-service  # Use appName from values.yaml
+      app: trade  # Use appName from values.yaml
   template:
     metadata:
       labels:
-        app: trade-service  # Use appName from values.yaml
+        app: trade  # Use appName from values.yaml
         sidecar.istio.io/inject: "true"
     spec:
       containers:
-      - name: trade-service  # Use appName from values.yaml
-        image: "vamsipothireddy/trade:sha-a069eb5"
+      - name: trade  # Use appName from values.yaml
+        image: "vamsipothireddy/trade:sha-0f4985c"
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8000

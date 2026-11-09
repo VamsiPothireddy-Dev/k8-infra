@@ -3,7 +3,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: trade-service-virtualservice
+  name: trade-virtualservice
 spec:
   hosts:
     - "api.vamsipothireddy.com"
@@ -16,7 +16,7 @@ spec:
             prefix: /
       route:
         - destination:
-            host: trade-service-service.default.svc.cluster.local
+            host: trade-service.default.svc.cluster.local
             port:
               number: 8000
 
