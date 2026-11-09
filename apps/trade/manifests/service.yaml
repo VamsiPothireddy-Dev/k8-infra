@@ -1,0 +1,15 @@
+---
+# Source: services/templates/service.yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: trade-service-service  # Generalized service name
+spec:
+  type: ClusterIP
+  selector:
+    app: trade-service  # Use appName from values.yaml
+  ports:
+  - port: 8000
+    targetPort: 8000
+
+
