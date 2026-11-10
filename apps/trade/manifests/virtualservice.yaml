@@ -13,7 +13,11 @@ spec:
     - name: default
       match:
         - uri:
-            prefix: /
+            exact: "/trade"
+        - uri:
+            prefix: "/trade/"
+      rewrite:
+        uri: /
       route:
         - destination:
             host: trade-service.default.svc.cluster.local
