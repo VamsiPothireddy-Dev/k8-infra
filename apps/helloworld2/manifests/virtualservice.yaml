@@ -1,0 +1,26 @@
+---
+# Source: services/templates/virtualservice.yaml
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: helloworld2-virtualservice
+spec:
+  hosts:
+    - "api.vamsipothireddy.com"
+  gateways:
+    - "istio-system/ingressgateway"
+  http:
+    - name: default
+      match:
+        - uri:
+            exact: "/helloworld2"
+        - uri:
+            prefix: "/helloworld2/"
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: helloworld2-service.default.svc.cluster.local
+            port:
+              number: 8000
+
