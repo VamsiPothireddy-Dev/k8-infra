@@ -1,0 +1,34 @@
+---
+# Source: services/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticketmaster-deployment  # Generalized name based on appName from values.yaml
+  labels:
+    helm.sh/chart: services-0.1.0
+    app.kubernetes.io/name: services
+    app.kubernetes.io/instance: ticketmaster
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ticketmaster  # Use appName from values.yaml
+  template:
+    metadata:
+      labels:
+        app: ticketmaster  # Use appName from values.yaml
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+      - name: ticketmaster  # Use appName from values.yaml
+        image: "vamsipothireddy/ticketmaster:03bb66d1bd44dee7ef09619579bc14c897018881"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+        env:
+          - name: IMAGE_TAG
+            value: "03bb66d1bd44dee7ef09619579bc14c897018881"
+
+

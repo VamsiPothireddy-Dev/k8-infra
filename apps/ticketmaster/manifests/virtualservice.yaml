@@ -1,0 +1,26 @@
+---
+# Source: services/templates/virtualservice.yaml
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: ticketmaster-virtualservice
+spec:
+  hosts:
+    - "api.vamsipothireddy.com"
+  gateways:
+    - "istio-system/ingressgateway"
+  http:
+    - name: default
+      match:
+        - uri:
+            exact: "/ticketmaster"
+        - uri:
+            prefix: "/ticketmaster/"
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            host: ticketmaster-service.default.svc.cluster.local
+            port:
+              number: 8000
+
