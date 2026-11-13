@@ -1,0 +1,15 @@
+---
+# Source: services/templates/service.yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: giftexchange-service  # Generalized service name
+spec:
+  type: ClusterIP
+  selector:
+    app: giftexchange  # Use appName from values.yaml
+  ports:
+  - port: 5001
+    targetPort: 5001
+
+
